@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 interface AuthButtonProps {
-  variant: "default" | "outline";
+  variant: "default" | "outline" | "ghost";
   action: "SignIn" | "SignOut";
   size?: "default" | "icon" | "lg" | "sm";
   fullWidth?: boolean;
@@ -22,9 +22,9 @@ export function AuthButton({
 }: AuthButtonProps) {
   const handleAuth = () => {
     if (action === "SignIn") {
-      signIn("google", { callbackUrl: "/" });
+      signIn("google", { callbackUrl: "/dashboard" });
     } else {
-      signOut();
+      signOut({ callbackUrl: "/" });
     }
   };
   return (
