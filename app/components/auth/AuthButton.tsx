@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { signIn, signOut } from "next-auth/react";
 import { ReactNode } from "react";
 import { FcGoogle } from "react-icons/fc";
+import clsx from "clsx";
 
 interface AuthButtonProps {
   variant: "default" | "outline" | "ghost";
   action: "SignIn" | "SignOut";
   size?: "default" | "icon" | "lg" | "sm";
+  className?: string;
   fullWidth?: boolean;
   children?: ReactNode;
 }
@@ -19,6 +21,7 @@ export function AuthButton({
   size,
   fullWidth,
   children,
+  className,
 }: AuthButtonProps) {
   const handleAuth = () => {
     if (action === "SignIn") {
@@ -32,7 +35,7 @@ export function AuthButton({
       <Button
         variant={variant}
         onClick={handleAuth}
-        className={fullWidth ? "w-full" : ""}
+        className={clsx(className, fullWidth && "w-full")}
         size={size}
       >
         {action === "SignIn" ? (

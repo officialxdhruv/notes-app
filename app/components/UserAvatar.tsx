@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { CreditCard, DoorClosed, Home, Settings } from "lucide-react";
 import Link from "next/link";
 import {
@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SignOutButton } from "./auth/SignOutButton";
+import { AuthButton } from "./auth/AuthButton";
 export const navItems = [
   { name: "Home", href: "/dashboard", icon: Home },
   { name: "Setting", href: "/dashboard/settings", icon: Settings },
@@ -28,13 +28,12 @@ export function UserAvatar({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="h-10 w-10 border-2 border-primary-foreground">
+        <Avatar className="h-10 w-10 border-2 border-primary">
           <AvatarImage
-            src={image || "/public/avatar.png"}
+            src={image || "/avatar.png"}
             alt={name}
             className="select-none pointer-events-none"
           />
-          <AvatarFallback>{name.charAt(0)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
@@ -64,12 +63,16 @@ export function UserAvatar({
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <SignOutButton>
+          <AuthButton
+            variant="ghost"
+            action="SignOut"
+            className="w-full flex justify-between items-center"
+          >
             Logout
             <span>
               <DoorClosed className="w-4 h-4" />
             </span>
-          </SignOutButton>
+          </AuthButton>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
