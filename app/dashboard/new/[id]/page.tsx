@@ -31,11 +31,15 @@ async function getData({ userId, noteId }: { userId: string; noteId: string }) {
   });
   return data;
 }
-export default async function page({ params }: { params: { id: string } }) {
+export default async function DynamicRoute({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const session = await auth();
   const data = await getData({
     userId: session?.user?.id as string,
-    noteId: params.id,
+    noteId: (await params).id,
   });
   async function postData(formData: FormData) {
     "use server";

@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
-import { Edit, File, Trash } from "lucide-react";
+import { Edit, File } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { TrashDelete } from "../components/Submitbutton";
