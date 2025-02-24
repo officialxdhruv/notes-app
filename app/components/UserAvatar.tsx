@@ -10,8 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AuthButton } from "./auth/AuthButton";
-
+import { SignOutButton } from "./auth/SignOutButton";
 export const navItems = [
   { name: "Home", href: "/dashboard", icon: Home },
   { name: "Setting", href: "/dashboard/settings", icon: Settings },
@@ -30,7 +29,11 @@ export function UserAvatar({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="h-10 w-10 border-2 border-primary-foreground">
-          <AvatarImage src={image || "/public/avatar.png"} alt={name} className="select-none pointer-events-none"/>
+          <AvatarImage
+            src={image || "/public/avatar.png"}
+            alt={name}
+            className="select-none pointer-events-none"
+          />
           <AvatarFallback>{name.charAt(0)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -60,18 +63,13 @@ export function UserAvatar({
           ))}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          className="w-full flex justify-between items-center"
-          asChild
-        >
-          <AuthButton variant="ghost" fullWidth action="SignOut">
-            <div className="w-full flex justify-between">
-              <p>Logout</p>
-              <span>
-                <DoorClosed className="w-4 h-4" />
-              </span>
-            </div>
-          </AuthButton>
+        <DropdownMenuItem asChild>
+          <SignOutButton>
+            Logout
+            <span>
+              <DoorClosed className="w-4 h-4" />
+            </span>
+          </SignOutButton>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
